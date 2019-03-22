@@ -1,12 +1,13 @@
+import { IRestaurantState } from './../../types';
 import ListContainer from './listContainer';
 import { connect } from 'react-redux';
 import { getAllRestaurants, areRestaurantsLoaded } from '../../selectors';
-import { fetchGeolocation, IApplicationProps } from '../../actions/restaurants';
+import { fetchGeolocation } from '../../actions/restaurants';
 
-const mapStateToProps = (state: IRestaurantListState) => {
+const mapStateToProps = (state: IRestaurantState) => {
   return {
     restaurants: getAllRestaurants(state),
-    success: areRestaurantsLoaded(state),
+    loaded: areRestaurantsLoaded(state),
   };
 };
 const mapDispatchToProps = (dispatch: any) => {
