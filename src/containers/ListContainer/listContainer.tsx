@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { ListItem } from 'react-native-elements';
+
 import { IRestaurant } from '../../types';
-import { fetchGeolocation, IApplicationProps } from '../../actions/restaurants';
+import { IApplicationProps } from '../../actions/restaurants';
 
 interface IRestaurantListProps extends IApplicationProps {
   navigation: any;
   classes: any;
-  success: boolean;
+  loaded: boolean;
   onPress: any;
   restaurants: IRestaurant[];
+  restaurantsSelector: any;
 }
 export default class ListContainer extends Component<IRestaurantListProps, {}> {
   static navigationOptions = {
@@ -23,13 +27,57 @@ export default class ListContainer extends Component<IRestaurantListProps, {}> {
     this.props.navigation.navigate('Detail');
   };
 
-  public RestaurantList = (props: any) => {
-    const { success, restaurants } = this.props;
+  public keyExtractor = (item: any, index: any) => index.toString();
 
-    if (success) {
+  public renderItem = ({ item }: { item: IRestaurant }) => {
+    const styles = StyleSheet.create({
+      subtitleView: {
+        flexDirection: 'row',
+        paddingLeft: 2,
+        paddingTop: 5,
+      },
+      ratingText: {
+        paddingLeft: 2,
+        color: 'blue',
+      },
+    });
+
+    const { name: venueName } = item.venue;
+    let iconSrc = 'https://ss3.4sqi.net/img/categories_v2/building/default_32.png';
+
+    const [
+      {
+        name: categoryName,
+        icon: { prefix, suffix },
+      },
+    ] = item.venue.categories;
+    iconSrc = prefix + '32' + suffix;
+
+    return (
+      <ListItem
+        onPress={this.onPressHandler}
+        title={venueName}
+        leftAvatar={{ source: { uri: iconSrc } }}
+        subtitle={
+          <View style={styles.subtitleView}>
+            <Text style={styles.ratingText}>{categoryName}</Text>
+          </View>
+        }
+      />
+    );
+  };
+
+  public RestaurantList = (props: any) => {
+    const { loaded, restaurants } = props;
+
+    if (loaded) {
       return (
         <View>
-          <FlatList data={restaurants} renderItem={({ item }) => <Text>{item.venue.name}</Text>} />
+          <FlatList
+            data={restaurants}
+            keyExtractor={this.keyExtractor}
+            renderItem={this.renderItem}
+          />
         </View>
       );
     } else {
@@ -39,6 +87,6 @@ export default class ListContainer extends Component<IRestaurantListProps, {}> {
 
   public render() {
     const RestaurantList = this.RestaurantList;
-    return <RestaurantList onPress={this.onPressHandler} />;
+    return <RestaurantList {...this.props} />;
   }
 }
