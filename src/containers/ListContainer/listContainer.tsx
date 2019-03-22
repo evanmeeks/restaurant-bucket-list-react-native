@@ -29,10 +29,7 @@ export default class ListContainer extends Component<IRestaurantListProps, {}> {
     if (success) {
       return (
         <View>
-          <FlatList
-            data={restaurants}
-            renderItem={({ item }) => <Text>{JSON.stringify(item.venue.name)}</Text>}
-          />
+          <FlatList data={restaurants} renderItem={({ item }) => <Text>{item.venue.name}</Text>} />
         </View>
       );
     } else {
