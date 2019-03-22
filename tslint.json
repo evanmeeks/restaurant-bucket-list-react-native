@@ -1,14 +1,12 @@
 {
-  "extends": [
-    "tslint:recommended",
-    "tslint-react",
-    "tslint-config-prettier"
-  ],
-  "rulesDirectory": [
-    "tslint-plugin-prettier"
-  ],
+  "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
-    "prettier": true,
-    "interface-name": false
+    "object-literal-sort-keys": [false],
+    "no-unused-variable": [true],
+    "no-submodule-imports": [false],
+    "no-console": [false, "log"],
+    "ordered-imports": false,
+    "interface-name": [true, "never-prefix"],
+    "no-implicit-dependencies": [true, "dev"]
   }
 }
