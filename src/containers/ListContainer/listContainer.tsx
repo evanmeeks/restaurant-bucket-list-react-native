@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
-
 import { IRestaurant } from '../../types';
 import { IApplicationProps } from '../../actions/restaurants';
 
@@ -16,7 +14,7 @@ interface IRestaurantListProps extends IApplicationProps {
 }
 export default class ListContainer extends Component<IRestaurantListProps, {}> {
   static navigationOptions = {
-    title: 'List',
+    title: 'Bucket List',
   };
 
   public componentDidMount() {
@@ -27,7 +25,9 @@ export default class ListContainer extends Component<IRestaurantListProps, {}> {
     this.props.navigation.navigate('Detail');
   };
 
-  public keyExtractor = (item: any, index: any) => index.toString();
+  public keyExtractor = (index: any) => {
+    return index.referralId.toString();
+  };
 
   public renderItem = ({ item }: { item: IRestaurant }) => {
     const styles = StyleSheet.create({
@@ -41,21 +41,21 @@ export default class ListContainer extends Component<IRestaurantListProps, {}> {
         color: 'blue',
       },
     });
-
-    const { name: venueName } = item.venue;
     let iconSrc = 'https://ss3.4sqi.net/img/categories_v2/building/default_32.png';
-
+    const { name: venueName } = item.venue;
     const [
       {
         name: categoryName,
         icon: { prefix, suffix },
       },
     ] = item.venue.categories;
-    iconSrc = prefix + '32' + suffix;
+    iconSrc = `${prefix}32${suffix}`;
 
     return (
       <ListItem
-        onPress={this.onPressHandler}
+        onPress={() => {
+          this.props.navigation.navigate('Detail', { itemData: item });
+        }}
         title={venueName}
         leftAvatar={{ source: { uri: iconSrc } }}
         subtitle={
@@ -67,7 +67,7 @@ export default class ListContainer extends Component<IRestaurantListProps, {}> {
     );
   };
 
-  public RestaurantList = (props: any) => {
+  public RestaurantList = (props: IRestaurantListProps) => {
     const { loaded, restaurants } = props;
 
     if (loaded) {
