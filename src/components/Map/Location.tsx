@@ -13,7 +13,7 @@ class Location extends React.Component<ILocationProps, {}> {
   public render() {
     const { lat, lng, name, categoryName } = this.props;
     return (
-      <Container style={{ backgroundColor: 'red' }}>
+      <Container>
         <MapView
           style={{ flex: 1 }}
           region={{
