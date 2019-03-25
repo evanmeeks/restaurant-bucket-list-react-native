@@ -6176,6 +6176,11 @@ query-string@^6.2.0:
     decode-uri-component "^0.2.0"
     strict-uri-encode "^2.0.0"
 
+querystring@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
+  integrity sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
+
 raf@^3.1.0:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
@@ -7873,6 +7878,11 @@ url-parse-lax@^1.0.0:
   integrity sha1-evjzA2Rem9eaJy56FKxovAYJ2nM=
   dependencies:
     prepend-http "^1.0.1"
+
+url-search-params-polyfill@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/url-search-params-polyfill/-/url-search-params-polyfill-5.0.1.tgz#ccf5c10dd55a5d31b6ea8ec0ae814f984fb72a06"
+  integrity sha512-OJRkM8f7rkjn2PLgc41SVnCpoT6QUNL5SGMYkaeEFJ6OPysjk02WnZu/6AAtAVyT8Qh/c0VnrRoXS86ISC1OXw==
 
 use@^3.1.0:
   version "3.1.1"

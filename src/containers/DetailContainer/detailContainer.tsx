@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Location from '../../components/Map/Location';
 import { NavigationScreenProp } from 'react-navigation';
 
