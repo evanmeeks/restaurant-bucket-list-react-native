@@ -1,13 +1,10 @@
 {
   "expo": {
-    "name": "react-native-typescript",
-    "slug": "react-native-typescript",
+    "name": "Restauraunt Bucket List",
+    "slug": "restaurant-bucket-list-react-native",
     "privacy": "public",
     "sdkVersion": "31.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,9 +16,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     }

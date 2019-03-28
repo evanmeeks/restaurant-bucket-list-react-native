@@ -1,7 +1,7 @@
 import { channel } from 'redux-saga';
+import 'url-search-params-polyfill';
 import { all, put, takeLatest, take } from 'redux-saga/effects';
 import { RestaurantActionTypes, GeolocationActionTypes } from '../types';
-import 'url-search-params-polyfill';
 
 export const locationChannel = channel();
 /* eslint-disable-next-line */
@@ -9,26 +9,30 @@ export function* fetchCurrentPosition(options) {
   const { query } = options;
 
   locationChannel.put({ type: GeolocationActionTypes.REDUX_SAGA_LOCATION_ACTION_REQUEST });
-
-  navigator.geolocation.getCurrentPosition(
-    position => {
-      locationChannel.put({
-        type: GeolocationActionTypes.REDUX_SAGA_LOCATION_ACTION_SET_POSITION,
-        position,
-        query,
-      });
-    },
-    error =>
-      locationChannel.put({
-        type: GeolocationActionTypes.REDUX_SAGA_LOCATION_ACTION_SET_ERROR,
-        error,
-      }),
-    options
-  );
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        console.log('error options', options);
+        locationChannel.put({
+          type: GeolocationActionTypes.REDUX_SAGA_LOCATION_ACTION_SET_POSITION,
+          position,
+          query,
+        });
+      },
+      error => {
+        console.log('error options', options);
+        locationChannel.put({
+          type: GeolocationActionTypes.REDUX_SAGA_LOCATION_ACTION_SET_ERROR,
+          error,
+        });
+      },
+      options
+    );
+  }
 }
 /* eslint-disable-next-line */
 export function* watchCurrentPosition(options) {
-  locationChannel.put({ type: 'REDUX_SAGA_LOCATION_ACTION_REQUEST' });
+  // locationChannel.put({ type: 'REDUX_SAGA_LOCATION_ACTION_REQUEST' });
 
   navigator.geolocation.watchPosition(
     position => {
@@ -49,7 +53,7 @@ function* fetchRestaurants(payload) {
   const params = {
     client_id: '0EB5JC4WFWHKXIY4BWR3UMHLOCCQ4M1UNKKFNUDFA5JKV3VM',
     client_secret: 'NF3HSWXWJGJKG40YM4BIWELNWHZISLKR4KTYZPB3WSZXAGM0',
-    limit: 100,
+    limit: 20,
     query,
     v: '20130619',
     ll: coords.latitude + ',' + coords.longitude,

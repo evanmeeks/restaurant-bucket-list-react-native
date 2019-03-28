@@ -26,10 +26,13 @@
     "react-devtools": "^3.6.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-31.0.0.tar.gz",
     "react-native-elements": "^1.1.0",
+    "react-native-geolocation-service": "^2.0.0",
     "react-native-maps": "^0.23.0",
     "react-navigation": "^3.5.1",
     "react-redux": "^6.0.1",
     "react-test-renderer": "^16.8.5",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
     "url-search-params-polyfill": "^5.0.1"
   },
