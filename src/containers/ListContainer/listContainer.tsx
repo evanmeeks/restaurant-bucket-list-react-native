@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { IRestaurant, IVenue } from '../../types';
+import { IVenue } from '../../types';
 import { IApplicationProps } from '../../actions/restaurants';
 
 interface IRestaurantListProps extends IApplicationProps {
@@ -22,7 +22,6 @@ export default class ListContainer extends Component<IRestaurantListProps, {}> {
   }
 
   public searchHandler = (value: any) => {
-    console.log('target', value);
     this.props.fetchGeolocation(value);
   };
 
