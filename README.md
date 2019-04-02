@@ -14,8 +14,7 @@
 
 ### Roadmap
 - [ ] [React Native Background Geolocation](https://github.com/transistorsoft/react-native-background-geolocation)
-https://branch.io/
-- [ ] [Deep linking] (https://branch.io/what-is-deep-linking/)
+- [ ] [Deep links](https://branch.io/what-is-deep-linking/)
 - [ ] Wait for react-redux hooks
 
 
