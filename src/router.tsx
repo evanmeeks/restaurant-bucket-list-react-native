@@ -1,5 +1,4 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-
+import { createStackNavigator } from 'react-navigation-stack'
 import ListContainer from './containers/ListContainer';
 import DetailContainer from './containers/DetailContainer';
 
@@ -12,4 +11,5 @@ const Router = createStackNavigator(
     initialRouteName: 'List',
   }
 );
-export default createAppContainer(Router);
+
+export default Router;
